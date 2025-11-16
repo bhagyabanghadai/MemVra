@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# IDEs
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Logs and temp
+*.log
+tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Node (if any future web assets)
+node_modules/

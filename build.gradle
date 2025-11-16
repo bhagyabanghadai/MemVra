@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.compyle'
+version = '0.1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.postgresql:postgresql:42.7.0'
+    implementation 'org.flywaydb:flyway-core:9.22.3'
+    implementation 'commons-codec:commons-codec:1.16.0'
+    implementation 'org.apache.pdfbox:pdfbox:2.0.30'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.testcontainers:junit-jupiter:1.19.3'
+    testImplementation 'org.testcontainers:postgresql:1.19.3'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register('extractPdf') {
+    group = 'documentation'
+    description = 'Extracts text from the strategy PDF into build/pdf/extracted.txt'
+    dependsOn 'classes'
+    doLast {
+        javaexec {
+            mainClass = 'com.compyle.memvra.util.PdfExtractor'
+            classpath = sourceSets.main.runtimeClasspath
+            args 'F:/Startup_Projects/MemVra/The Agentic AI Memory Integrity Imperative_ A Deep Dive into Market Demand, Competitive Landscape, and Strategic Solutions.pdf'
+        }
+    }
+}

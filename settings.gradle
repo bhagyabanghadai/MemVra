@@ -1,0 +1,2 @@
+rootProject.name = 'MemVra'
+include 'memvra-client-java'

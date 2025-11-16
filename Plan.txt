@@ -1,0 +1,692 @@
+# MemVra Truth Ledger Implementation Plan
+
+## Overview
+
+Building the MemVra Truth Ledger - a certification layer that prevents AI agents from acting on unverified or hallucinated "facts." This Phase 1 MVP focuses on truth certification through mandatory provenance, cryptographic signing, and immutable storage in PostgreSQL.
+
+## Current State Analysis
+
+- **Repository**: Completely empty (MemVra repo)
+- **Infrastructure**: No existing code, build system, or configuration
+- **Approach**: Fresh Spring Boot application with complete stack setup
+
+## Desired End State
+
+- Working Java Spring Boot service with Gradle build system
+- Two core APIs: POST /v1/facts and GET /v1/facts/{factId}
+- PostgreSQL database with FactRecord schema and migrations
+- HMAC-SHA256 cryptographic signing for verification
+- Java client SDK (memvra-client-java) for agent integration
+- Comprehensive unit test coverage with TestContainers
+
+---
+
+## Project Structure & Build System
+
+### Repository: MemVra
+
+### Gradle Project Structure
+
+```
+MemVra/
+├── build.gradle
+├── settings.gradle
+├── README.md
+├── .gitignore
+├── Dockerfile
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── com/
+    │   │       └── compyle/
+    │   │           └── memvra/
+    │   │               ├── MemVraApplication.java
+    │   │               ├── config/
+    │   │               │   └── DatabaseConfig.java
+    │   │               ├── controller/
+    │   │               │   └── FactController.java
+    │   │               ├── service/
+    │   │               │   ├── FactService.java
+    │   │               │   └── CryptoService.java
+    │   │               ├── model/
+    │   │               │   ├── FactRecord.java
+    │   │               │   ├── CreateFactRequest.java
+    │   │               │   └── FactRecordDto.java
+    │   │               ├── repository/
+    │   │               │   └── FactRepository.java
+    │   │               └── enums/
+    │   │                   └── SourceType.java
+    │   └── resources/
+    │       ├── application.yml
+    │       └── db/migration/
+    │           └── V1__Create_fact_records_table.sql
+    └── test/
+        └── java/
+            └── com/
+                └── compyle/
+                    └── memvra/
+                        ├── controller/
+                        │   └── FactControllerTest.java
+                        ├── service/
+                        │   ├── FactServiceTest.java
+                        │   └── CryptoServiceTest.java
+                        └── integration/
+                            └── FactApiIntegrationTest.java
+```
+
+### Client SDK Module
+
+```
+memvra-client-java/
+├── build.gradle
+└── src/main/java/com/compyle/memvra/client/
+    ├── MemVraClient.java
+    ├── Fact.java
+    └── SourceType.java
+```
+
+### Gradle Dependencies (build.gradle)
+
+**Spring Boot Version**: 3.2.0
+
+**Key Dependencies**:
+
+- `spring-boot-starter-web` - REST API framework
+- `spring-boot-starter-data-jpa` - Database ORM
+- `spring-boot-starter-validation` - Input validation
+- `spring-boot-starter-test` - Testing framework
+- `postgresql` - PostgreSQL driver
+- `flyway-core` - Database migrations
+- `testcontainers` - Integration testing with real DB
+- `org.apache.commons:commons-codec` - HMAC utilities
+
+**Configuration**:
+
+- Java 17
+- Gradle with Spring Boot plugin
+- TestContainers for integration testing
+- Flyway plugin for migrations
+
+---
+
+## Database Schema
+
+### PostgreSQL Table: fact\_records
+
+**File**: `src/main/resources/db/migration/V1__Create_fact_records_table.sql`
+
+```sql
+CREATE TABLE fact_records (
+    fact_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    content TEXT NOT NULL,
+    source_type VARCHAR(50) NOT NULL,
+    source_id TEXT NOT NULL,
+    recorded_by VARCHAR(100) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    signature BYTEA NOT NULL
+);
+
+-- Indexes for performance
+CREATE INDEX idx_fact_records_source_type ON fact_records(source_type);
+CREATE INDEX idx_fact_records_recorded_by ON fact_records(recorded_by);
+CREATE INDEX idx_fact_records_created_at ON fact_records(created_at);
+CREATE INDEX idx_fact_records_source_id ON fact_records(source_id);
+
+-- Optional constraint to prevent duplicate beliefs per agent
+-- ALTER TABLE fact_records ADD CONSTRAINT unique_fact_per_agent
+--   UNIQUE (source_id, recorded_by);
+
+-- Comment for documentation
+COMMENT ON TABLE fact_records IS 'Immutable ledger of verified facts with cryptographic signatures';
+```
+
+**Rationale**:
+
+- `fact_id`: UUID for unique identification, using gen\_random\_uuid() for security
+- `content`: Plain text fact statement (no embeddings, no LLMs)
+- `source_type`: Enumerated type (user\_input, document, api\_response, agent\_inference)
+- `source_id`: Unique reference to source evidence (chat:session:turn, document:id, etc.)
+- `signature`: HMAC-SHA256 signature for cryptographic verification
+- Indexes on common query patterns (source\_type, recorded\_by, created\_at)
+
+**SourceType Enum Values**:
+
+- `USER_INPUT` - Direct user input (chat, email, form)
+- `DOCUMENT` - Structured document content
+- `API_RESPONSE` - External system response
+- `AGENT_INFERENCE` - Agent reasoning (flagged as high-risk)
+
+---
+
+## API Endpoint Specification
+
+### Fact Recording Endpoint
+
+**File**: `src/main/java/com/compyle/memvra/controller/FactController.java`
+
+**Route**: `POST /v1/facts`
+
+**Request Body**:
+
+```json
+{
+  "content": "Customer reported card as stolen",
+  "source_type": "user_input",
+  "source_id": "chat:session_xyz:turn_5",
+  "recorded_by": "agent-support-bot-v2"
+}
+```
+
+**Validation Rules**:
+
+- `content`: Required, non-empty after trim, max 1,000 characters
+- `source_type`: Required, must be one of: `user_input`, `document`, `api_response`, `agent_inference`
+- `source_id`: Required, non-empty, URL-safe or UUID-based
+- `recorded_by`: Required, non-empty, max 100 characters
+- If `source_type` is `agent_inference`: Log warning (high-risk flag)
+
+**Success Response (201 Created)**:
+
+```json
+{
+  "fact_id": "mv-8a1f4b2e-9c3d-4f5a-b6e7-0a1b2c3d4e5f",
+  "signature": "base64-encoded-hmac-signature",
+  "created_at": "2025-04-05T10:23:00Z"
+}
+```
+
+**Error Responses**:
+
+- `400 Bad Request`: Invalid JSON or malformed request
+- `422 Unprocessable Entity`: Validation failures (empty content, invalid source\_type, etc.)
+- `500 Internal Server Error`: Database or system failures
+
+### Fact Retrieval Endpoint
+
+**Route**: `GET /v1/facts/{factId}`
+
+**Response (200 OK)**:
+
+```json
+{
+  "fact_id": "mv-8a1f4b2e-...",
+  "content": "Customer reported card as stolen",
+  "source_type": "user_input",
+  "source_id": "chat:session_xyz:turn_5",
+  "recorded_by": "agent-support-bot-v2",
+  "created_at": "2025-04-05T10:23:00Z",
+  "signature": "base64-encoded-hmac-signature"
+}
+```
+
+**Error Responses**:
+
+- `404 Not Found`: Fact with specified ID does not exist
+- `500 Internal Server Error`: Database or system failures
+
+---
+
+## Cryptographic Design
+
+### HMAC-SHA256 Signing
+
+**Algorithm**: HMAC-SHA256 with server-side secret key
+
+**Signing Process**:
+Concatenate the critical fields for signature:
+
+```
+payload = fact_id + "|" + content + "|" + source_type + "|" + source_id + "|" + recorded_by + "|" + created_at
+```
+
+**Implementation** (Java):
+
+```java
+Mac hmac = Mac.getInstance("HmacSHA256");
+SecretKeySpec keySpec = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+hmac.init(keySpec);
+byte[] signature = hmac.doFinal(payload.getBytes(StandardCharsets.UTF_8));
+```
+
+**Verification Process**:
+Clients can download the fact + signature and recompute:
+
+1. Build payload using same concatenation format
+2. Compute HMAC using shared secret (or verify via API)
+3. Compare computed signature with stored signature
+4. Return true only if signatures match
+
+**Key Management**:
+
+- Store `MEMVRA_SECRET_KEY` in environment variable
+- Recommended: 32+ character random string
+- Future: Integration with HashiCorp Vault for rotation
+- Development: Use default secret key for local testing
+
+**Security Considerations**:
+
+- HMAC prevents tampering with any field
+- Timestamp included prevents replay attacks
+- Base64 encode signature for JSON transport
+- No salt needed (secret key provides entropy)
+- Input normalization: Trim whitespace before signing
+
+---
+
+## Service Layer Architecture
+
+### Fact Service
+
+**File**: `src/main/java/com/compyle/memvra/service/FactService.java`
+
+**Core Method**: `recordFact(CreateFactRequest request)`
+
+**Processing Flow**:
+
+1. Validate input parameters (content, source\_type, source\_id, recorded\_by)
+2. Generate fact\_id with "mv-" prefix + UUID for identification
+3. Log warning if source\_type is AGENT\_INFERENCE (high-risk)
+4. Build payload string for signing
+5. Compute HMAC-SHA256 signature using secret key
+6. Save FactRecord to PostgreSQL using JPA repository
+7. Return response with fact\_id and signature
+
+**Transaction Management**:
+
+- `@Transactional` on record operation
+- Database write is atomic - no partial records
+- Exception on any failure rolls back entire transaction
+
+### Crypto Service
+
+**File**: `src/main/java/com/compyle/memvra/service/CryptoService.java`
+
+**Algorithm**: HMAC-SHA256
+
+**Signing Method**: `signFact(String factId, CreateFactRequest request, LocalDateTime createdAt)`
+
+**Implementation**:
+
+- Use `javax.crypto.Mac` with HmacSHA256
+- Load secret key from environment variable `MEMVRA_SECRET_KEY`
+- Convert signature to Base64 for JSON transport
+- Include timestamp in payload to prevent replay attacks
+
+**Verification Method**: `verifyFact(String factId, FactRecord fact, String secretKey)`
+
+**Security Notes**:
+
+- HMAC provides authenticity and integrity protection
+- Secret key must be protected and rotated periodically
+- All fields in payload prevent selective tampering
+- Input normalization ensures consistent signing across clients
+
+---
+
+## Configuration Management
+
+### Application Configuration
+
+**File**: `src/main/resources/application.yml`
+
+```yaml
+server:
+  port: 8080
+
+spring:
+  application:
+    name: memvra
+
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:memvra}
+    username: ${DATABASE_USER:memvra}
+    password: ${DATABASE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+logging:
+  level:
+    com.compyle.memvra: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    correlation-id: "[%X{correlationId}]"
+
+# Custom application properties
+compyle:
+  fact:
+    max-content-length: 1000
+    secret-key: ${MEMVRA_SECRET_KEY:default-dev-secret-change-in-production}
+```
+
+**Environment Variables**:
+
+- `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`
+- `MEMVRA_SECRET_KEY` - HMAC signing key (32+ chars recommended)
+- `LOG_LEVEL` - Optional log level override
+
+**Security Configuration**:
+
+- Secret key loaded from environment at startup
+- Development default should never be used in production
+- Key rotation requires application restart (future improvement)
+
+---
+
+## Testing Strategy
+
+### Unit Tests
+
+**Files**: `src/test/java/com/compyle/memvra/service/*Test.java`
+
+**Test Coverage Targets**:
+
+- Fact Service: 90%+ line coverage
+- Crypto Service: 100% (deterministic behavior)
+- Validation: All edge cases covered
+- Repository: Basic CRUD operations
+
+**Test Cases for Fact Service**:
+
+- Happy path: Valid fact recording and retrieval
+- Edge cases: Empty content, invalid source\_type, missing source\_id
+- High-risk handling: AGENT\_INFERENCE source\_type logging
+- Database errors: Connection failures, constraint violations
+- Duplicate prevention: Same source\_id for same agent
+
+**Test Cases for Crypto Service**:
+
+- HMAC-SHA256 signing correctness
+- Signature verification matches
+- Payload format consistency
+- Different secret keys produce different signatures
+- Input normalization testing
+
+### Integration Tests
+
+**File**: `src/test/java/com/compyle/memvra/integration/FactApiIntegrationTest.java`
+
+**TestContainers Setup**:
+
+- PostgreSQL container for database tests
+- Full application context with real infrastructure
+- TestContainers for isolated testing
+
+**Integration Test Scenarios**:
+
+1. End-to-end fact recording and retrieval
+2. Database transaction rollback scenarios
+3. HMAC verification across multiple requests
+4. Concurrent fact recording attempts
+5. Database constraint violation handling
+6. API validation for all error conditions
+
+### Client SDK Tests
+
+**File**: `memvra-client-java/src/test/java/com/compyle/memvra/client/MemVraClientTest.java`
+
+**Test Cases**:
+
+- Client fact recording integration
+- Client verification functionality
+- Error handling and retry logic
+- Connection timeout scenarios
+
+### Test Data Strategy
+
+**Test Fixtures**:
+
+- Sample facts with various source types
+- Invalid requests for negative testing
+- High-risk agent inference facts
+- Different source\_id formats (UUID, chat references)
+
+**Test Utilities**:
+
+- `FactTestUtils.java` for creating test requests
+- `CryptoTestUtils.java` for signature verification
+- `DatabaseCleanup.java` for test isolation
+
+---
+
+## Java Client SDK
+
+### MemVra Client Library
+
+**File**: `memvra-client-java/src/main/java/com/compyle/memvra/client/MemVraClient.java`
+
+**Core Methods**:
+
+```java
+public class MemVraClient {
+    private final String baseUrl;
+    private final String apiKey;
+    private final RestTemplate restTemplate;
+
+    public FactRecord record(Fact fact) {
+        // POST to /v1/facts with authentication
+        // Handle API errors and retries
+        // Return FactRecord with signature
+    }
+
+    public boolean verify(String factId) {
+        // GET fact from /v1/facts/{factId}
+        // Reccompute HMAC signature locally
+        // Compare with stored signature
+        // Return true only if signatures match
+    }
+
+    public FactRecord getFact(String factId) {
+        // GET fact from /v1/facts/{factId}
+        // Return complete fact record
+    }
+}
+```
+
+**Usage Example**:
+
+```java
+MemVraClient memVra = new MemVraClient("https://api.memvra.com", "your-api-key");
+
+Fact fact = new Fact("Payment failed")
+    .withSource(SourceType.API_RESPONSE, "stripe:event_789")
+    .recordedBy("payment-bot-v1");
+
+FactRecord record = memVra.record(fact);
+if (memVra.verify(record.getFactId())) {
+    handlePaymentFailure();
+}
+```
+
+**Maven Publishing**:
+
+- Publish to Maven Central
+- Version: 1.0.0 for V1 API compatibility
+- Dependencies: Spring Web, Jackson for JSON
+- Java 17+ requirement
+
+---
+
+## Implementation Phases
+
+### Phase 1: Truth Ledger (Current Scope)
+
+- Spring Boot application setup with Gradle
+- PostgreSQL database schema and migrations
+- Fact recording API endpoint (/v1/facts) with validation
+- Fact retrieval API endpoint (/v1/facts/{factId})
+- HMAC-SHA256 cryptographic signing
+- Java client SDK development
+- Comprehensive unit and integration test coverage
+
+### Future Phases (Out of Scope for V1)
+
+- Fact query and search endpoints
+- Batch fact operations
+- Fact staleness detection
+- Agent trust scoring
+- Conflict resolution between agents
+- Advanced analytics and reporting
+- API authentication and rate limiting
+- Multi-tenant support
+- Webhook notifications for fact events
+
+---
+
+## Manual Testing Guide
+
+### Local Development Setup
+
+**Prerequisites**:
+
+- Java 17+
+- Docker & Docker Compose
+- Gradle 8.0+
+
+**Local Services**:
+
+```yaml
+# docker-compose.yml (for local testing)
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: memvra
+      POSTGRES_USER: memvra
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  # Optional: Redis for future caching (not used in V1)
+  # redis:
+  #   image: redis:7
+  #   ports:
+  #     - "6379:6379"
+```
+
+### Test Scenarios
+
+**Test 1: Happy Path Fact Recording**
+
+```bash
+curl -X POST http://localhost:8080/v1/facts \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Customer reported card as stolen",
+    "source_type": "user_input",
+    "source_id": "chat:session_xyz:turn_5",
+    "recorded_by": "agent-support-bot-v2"
+  }'
+```
+
+Expected: 201 Created, response with fact\_id and signature
+
+**Test 2: Fact Retrieval and Verification**
+
+```bash
+# Get the fact (using fact_id from Test 1 response)
+curl -X GET http://localhost:8080/v1/facts/{fact_id}
+
+# Verify the signature locally (conceptual)
+# Client SDK would handle this automatically
+```
+
+**Test 3: Validation Errors**
+
+- Empty content → 422 Unprocessable Entity
+- Invalid source\_type → 422 Unprocessable Entity
+- Missing source\_id → 422 Unprocessable Entity
+- Invalid JSON → 400 Bad Request
+
+**Test 4: High-Risk Source Type**
+
+```bash
+curl -X POST http://localhost:8080/v1/facts \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "I think the user is upset",
+    "source_type": "agent_inference",
+    "source_id": "internal:reasoning:123",
+    "recorded_by": "agent-support-bot-v2"
+  }'
+```
+
+Expected: 201 Created, but warning logged about high-risk source
+
+**Test 5: Client SDK Integration**
+
+```java
+// Test using the Java client SDK
+MemVraClient client = new MemVraClient("http://localhost:8080", "test-key");
+Fact fact = new Fact("Test fact")
+    .withSource(SourceType.USER_INPUT, "test:source:1")
+    .recordedBy("test-agent");
+
+FactRecord record = client.record(fact);
+boolean verified = client.verify(record.getFactId());
+```
+
+---
+
+## Production Readiness Checklist
+
+### Code Quality
+
+- [ ] All code follows Spring Boot best practices
+- [ ] Error handling comprehensive with proper HTTP status codes
+- [ ] Input validation prevents injection attacks
+- [ ] Logging configured for production monitoring
+- [ ] HMAC-SHA256 implementation reviewed for security
+- [ ] Agent inference warnings properly implemented
+
+### Database
+
+- [ ] PostgreSQL schema optimized with proper indexes
+- [ ] Database migrations tested and reversible
+- [ ] Connection pooling configured
+- [ ] Database credentials externalized
+- [ ] Fact record constraints properly enforced
+
+### Security
+
+- [ ] HMAC secret key management process defined
+- [ ] Payload format documented for verification
+- [ ] Base64 encoding/decoding tested
+- [ ] Input normalization prevents signature inconsistencies
+- [ ] Secret key rotation strategy planned
+
+### Client SDK
+
+- [ ] Maven publication to Central Repository
+- [ ] Client API documentation complete
+- [ ] Error handling and retry logic implemented
+- [ ] Version compatibility with API V1
+- [ ] Java 17+ dependency requirements documented
+
+### Testing
+
+- [ ] Unit test coverage >85%
+- [ ] Integration tests cover critical paths
+- [ ] Client SDK integration tests
+- [ ] HMAC verification tests across environments
+- [ ] Security tests for validation boundaries
+
+### Operations
+
+- [ ] Application health endpoints configured
+- [ ] Metrics collection for fact recording volume
+- [ ] Configuration externalized for environments
+- [ ] Container deployment ready (Dockerfile)
+- [ ] API rate limiting considerations documented
+- [ ] Monitoring for high-risk agent inference volume

@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.compyle'
+version = '0.1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories { mavenCentral() }
+
+dependencies {
+    implementation 'org.springframework:spring-web:6.1.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+}
+
+test { useJUnitPlatform() }
