@@ -67,6 +67,11 @@ The Dockerfile is multi-stage: it builds the Spring Boot jar using Gradle in the
   - `MEMVRA_API_KEY=your-strong-api-key`
 - Client requests must include the header: `X-API-Key: your-strong-api-key`.
 - In Compose, auth is enabled by default with a dev key. Change it for your setup.
+ 
+### Using Swagger UI with API Key
+- Open `http://localhost:8080/swagger-ui/index.html` (or your port).
+- Click `Authorize`, select `ApiKeyAuth`, and enter your API key.
+- Endpoints are annotated to require `ApiKeyAuth`; unauthenticated requests return `401` when auth is enabled.
 
 ## Observability
 
@@ -83,6 +88,7 @@ The Dockerfile is multi-stage: it builds the Spring Boot jar using Gradle in the
 Record a fact:
 ```bash
 curl -X POST http://localhost:8080/v1/facts \
+  -H "X-API-Key: your-strong-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "content": "Customer reported card as stolen",
@@ -95,6 +101,7 @@ curl -X POST http://localhost:8080/v1/facts \
 Retrieve a fact:
 ```bash
 curl -X GET http://localhost:8080/v1/facts/{fact_id}
+  -H "X-API-Key: your-strong-api-key"
 ```
 
 ## SDK Usage (Java)
