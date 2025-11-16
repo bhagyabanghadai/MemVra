@@ -1,0 +1,23 @@
+# Build artifacts
+build/
+out/
+.gradle/
+
+# VCS
+.git/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+tmp/
+
+# Node (if any future web assets)
+node_modules/

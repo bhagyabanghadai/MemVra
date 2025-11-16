@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
     implementation 'org.postgresql:postgresql:42.7.0'
     implementation 'org.flywaydb:flyway-core:9.22.3'
     implementation 'commons-codec:commons-codec:1.16.0'
@@ -33,6 +34,21 @@ tasks.withType(JavaCompile).configureEach {
 
 test {
     useJUnitPlatform()
+    // Skip integration tests unless explicitly enabled with -PincludeIntegration=true
+    if (!project.hasProperty('includeIntegration') || project.property('includeIntegration') != 'true') {
+        exclude '**/integration/**'
+    }
+}
+
+// Dedicated integrationTest task to run only integration tests
+tasks.register('integrationTest', Test) {
+    useJUnitPlatform()
+    description = 'Runs integration tests (Docker required)'
+    group = 'verification'
+    include '**/integration/**'
+    // Ensure unit tests are compiled first
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
 }
 
 tasks.register('extractPdf') {

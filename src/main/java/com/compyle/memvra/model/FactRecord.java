@@ -28,8 +28,7 @@ public class FactRecord {
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
 
-    @Lob
-    @Column(name = "signature", nullable = false)
+    @Column(name = "signature", nullable = false, columnDefinition = "BYTEA")
     private byte[] signature;
 
     public UUID getFactId() { return factId; }

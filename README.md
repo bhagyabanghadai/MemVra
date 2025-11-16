@@ -31,9 +31,53 @@ MemVra is a Spring Boot service that certifies "facts" via mandatory provenance 
    gradle bootRun
    ```
 5. Health check:
-   ```bash
-   curl http://localhost:8080/actuator/health
-   ```
+  ```bash
+  curl http://localhost:8080/actuator/health
+  ```
+
+6. OpenAPI docs:
+   - JSON spec: `http://localhost:8080/v3/api-docs`
+   - Swagger UI: `http://localhost:8080/swagger-ui/index.html`
+
+## Containerization
+
+- Build and run locally with Docker Compose:
+  ```bash
+  docker compose up --build -d
+  ```
+- Check health:
+  ```bash
+  curl http://localhost:8080/actuator/health
+  ```
+- Stop and remove containers:
+  ```bash
+  docker compose down
+  ```
+
+Environment variables used by the app (set in `docker-compose.yml` and override-able):
+- `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`
+- `MEMVRA_SECRET_KEY` (choose a strong secret in non-dev environments)
+
+The Dockerfile is multi-stage: it builds the Spring Boot jar using Gradle in the builder stage and runs it on a slim JRE image for smaller deployments.
+
+## API Key Authentication
+
+- Enable with environment variables or properties:
+  - `MEMVRA_API_KEY_ENABLED=true`
+  - `MEMVRA_API_KEY=your-strong-api-key`
+- Client requests must include the header: `X-API-Key: your-strong-api-key`.
+- In Compose, auth is enabled by default with a dev key. Change it for your setup.
+
+## Observability
+
+- Every request gets a correlation ID (header `X-Correlation-Id`).
+- The same ID is echoed in the response and used in MDC for logs.
+
+## Build & Test
+
+- Unit tests: `gradle test`
+- Integration tests only: `gradle integrationTest -q`
+- All tests with Docker: `gradle test -PincludeIntegration=true -q`
 
 ## API Examples
 Record a fact:
@@ -55,7 +99,14 @@ curl -X GET http://localhost:8080/v1/facts/{fact_id}
 
 ## SDK Usage (Java)
 ```java
-MemVraClient client = new MemVraClient("http://localhost:8080", "test-key");
+MemVraClient client = MemVraClient.builder()
+    .baseUrl("http://localhost:8080")
+    .apiKey("test-key")
+    .connectTimeoutMs(3000)
+    .readTimeoutMs(5000)
+    .maxRetries(2)
+    .retryBackoffMs(250)
+    .build();
 Fact fact = new Fact("Test fact")
     .withSource(SourceType.USER_INPUT, "test:source:1")
     .recordedBy("test-agent");
@@ -79,6 +130,7 @@ Integration test uses TestContainers (Docker required) to validate HMAC end-to-e
 ## Docs & Roadmap
 - Roadmap: `roadmap.md`
 - Project Log Book: `logbook.md`
+- OpenAPI: `/v3/api-docs` and `/swagger-ui`
 
 ## Production Notes
 - Configure DB via environment variables

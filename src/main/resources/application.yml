@@ -32,6 +32,10 @@ compyle:
   fact:
     max-content-length: 1000
     secret-key: ${MEMVRA_SECRET_KEY:default-dev-secret-change-in-production}
+  security:
+    api-key:
+      enabled: ${MEMVRA_API_KEY_ENABLED:false}
+      value: ${MEMVRA_API_KEY:}
 
 management:
   endpoints:

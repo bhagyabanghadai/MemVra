@@ -40,7 +40,7 @@ public class FactService {
 
         UUID id = UUID.randomUUID();
         String externalId = "mv-" + id;
-        OffsetDateTime createdAt = OffsetDateTime.now();
+        OffsetDateTime createdAt = OffsetDateTime.now(java.time.ZoneOffset.UTC).withNano(0);
 
         String payload = buildPayload(externalId, request, createdAt);
         byte[] signature = crypto.sign(payload);
@@ -98,12 +98,13 @@ public class FactService {
     }
 
     private String buildPayload(String externalId, CreateFactRequest req, OffsetDateTime createdAt) {
+        String created = createdAt.withNano(0).toString();
         return externalId + "|" +
                 req.getContent() + "|" +
                 req.getSourceType().toValue() + "|" +
                 req.getSourceId() + "|" +
                 req.getRecordedBy() + "|" +
-                createdAt.toString();
+                created;
     }
 
     private UUID parseExternalId(String externalId) {
