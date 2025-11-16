@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class FactController {
     }
 
     @PostMapping
+    @SecurityRequirement(name = "ApiKeyAuth")
     @Operation(summary = "Record a fact", description = "Creates a signed fact with provenance and returns the record.")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Created",
@@ -41,6 +43,7 @@ public class FactController {
     }
 
     @GetMapping("/{factId}")
+    @SecurityRequirement(name = "ApiKeyAuth")
     @Operation(summary = "Get a fact", description = "Fetches a previously recorded fact by its external ID (mv-UUID).")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
