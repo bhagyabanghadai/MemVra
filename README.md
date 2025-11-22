@@ -39,6 +39,34 @@ MemVra is a Spring Boot service that certifies "facts" via mandatory provenance 
    - JSON spec: `http://localhost:8080/v3/api-docs`
    - Swagger UI: `http://localhost:8080/swagger-ui/index.html`
 
+## Dataset Ingestion (Wikidata)
+
+To validate end-to-end behavior and deduplication, ingest country→capital facts from Wikidata.
+
+### Prerequisites
+- Python 3.8+
+- `pip install requests`
+- Running MemVra instance (e.g., `http://localhost:8080` or `http://localhost:8081`)
+
+### Environment
+- `MEMVRA_BASE_URL` (default `http://localhost:8081`)
+- `MEMVRA_API_KEY` (required)
+- `MEMVRA_SECRET_KEY` (optional; if set, the script verifies HMAC signatures locally)
+
+### Run
+```bash
+python scripts/ingest_wikidata.py --limit 20
+```
+
+The script:
+- Queries Wikidata for country→capital (`LIMIT` configurable)
+- Posts to `POST /v1/facts` with `source_type=api_response` and `source_id=wikidata:<Qid>:capital:<Qid>`
+- Respects rate limits (default sleep 0.6s between posts)
+- Optionally recomputes HMAC based on server response and compares with `signature`
+- Prints a summary: total, created, conflicts (duplicates), errors, verified
+
+Re-running the script with the same inputs returns `409 CONFLICT` for duplicates and does not create new records.
+
 ## Containerization
 
 - Build and run locally with Docker Compose:
@@ -68,6 +96,13 @@ The Dockerfile is multi-stage: it builds the Spring Boot jar using Gradle in the
 - Client requests must include the header: `X-API-Key: your-strong-api-key`.
 - In Compose, auth is enabled by default with a dev key. Change it for your setup.
  
+## CORS (Front-end Integration)
+
+- For browser-based front ends, configure allowed origins:
+  - `MEMVRA_CORS_ORIGINS` (comma-separated, e.g. `http://localhost:5173,http://localhost:3000`)
+- CORS covers `/v1/**`, `/v3/api-docs/**`, and `/swagger-ui/**` for local development.
+- The response exposes `X-Correlation-Id` so you can trace requests end-to-end.
+ 
 ### Using Swagger UI with API Key
 - Open `http://localhost:8080/swagger-ui/index.html` (or your port).
 - Click `Authorize`, select `ApiKeyAuth`, and enter your API key.
@@ -77,6 +112,8 @@ The Dockerfile is multi-stage: it builds the Spring Boot jar using Gradle in the
 
 - Every request gets a correlation ID (header `X-Correlation-Id`).
 - The same ID is echoed in the response and used in MDC for logs.
+ - Actuator exposure is limited to `health` by default.
+ - JPA Open-In-View is disabled to avoid lazy-loading pitfalls and align with best practices.
 
 ## Build & Test
 
@@ -142,4 +179,8 @@ Integration test uses TestContainers (Docker required) to validate HMAC end-to-e
 ## Production Notes
 - Configure DB via environment variables
 - Do not use the dev default secret key in production
-- Plan improvements: authentication, rate limiting, metrics, structured logging, freshness metadata
+ - Database integrity: a unique constraint prevents duplicate facts per `(content, source_id, recorded_by)`. Migrations apply this automatically (`V2__Add_unique_fact_constraint.sql`).
+ - Security startup checks log errors if a weak/default secret is used or API key is enabled without a value.
+ - Authentication & rate limiting: When enabled, API key auth guards endpoints; write operations are rate-limited with `429` and `Retry-After` guidance.
+ - Logging: default app log level is `INFO`.
+ - Plan improvements: authentication, rate limiting, metrics, structured logging, freshness metadata

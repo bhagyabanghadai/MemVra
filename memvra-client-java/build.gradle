@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.compyle'
+group = 'com.memvra'
 version = '0.1.0-SNAPSHOT'
 sourceCompatibility = '17'
 

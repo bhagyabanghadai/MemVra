@@ -1,0 +1,42 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: memvra-service
+  labels:
+    cloud.googleapis.com/location: us-central1
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "10"
+    spec:
+      containers:
+        - image: gcr.io/PROJECT_ID/memvra-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "production"
+            - name: MEMVRA_SECURITY_API_KEY_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: memvra-secrets
+                  key: api-key
+            - name: MEMVRA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: memvra-secrets
+                  key: secret-key
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://IP_ADDRESS:5432/memvra"
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: password

@@ -38,24 +38,23 @@ MemVra/
     ├── main/
     │   ├── java/
     │   │   └── com/
-    │   │       └── compyle/
-    │   │           └── memvra/
-    │   │               ├── MemVraApplication.java
-    │   │               ├── config/
-    │   │               │   └── DatabaseConfig.java
-    │   │               ├── controller/
-    │   │               │   └── FactController.java
-    │   │               ├── service/
-    │   │               │   ├── FactService.java
-    │   │               │   └── CryptoService.java
-    │   │               ├── model/
-    │   │               │   ├── FactRecord.java
-    │   │               │   ├── CreateFactRequest.java
-    │   │               │   └── FactRecordDto.java
-    │   │               ├── repository/
-    │   │               │   └── FactRepository.java
-    │   │               └── enums/
-    │   │                   └── SourceType.java
+    │   │       └── memvra/
+    │   │           ├── MemVraApplication.java
+    │   │           ├── config/
+    │   │           │   └── DatabaseConfig.java
+    │   │           ├── controller/
+    │   │           │   └── FactController.java
+    │   │           ├── service/
+    │   │           │   ├── FactService.java
+    │   │           │   └── CryptoService.java
+    │   │           ├── model/
+    │   │           │   ├── FactRecord.java
+    │   │           │   ├── CreateFactRequest.java
+    │   │           │   └── FactRecordDto.java
+    │   │           ├── repository/
+    │   │           │   └── FactRepository.java
+    │   │           └── enums/
+    │   │               └── SourceType.java
     │   └── resources/
     │       ├── application.yml
     │       └── db/migration/
@@ -63,15 +62,14 @@ MemVra/
     └── test/
         └── java/
             └── com/
-                └── compyle/
-                    └── memvra/
-                        ├── controller/
-                        │   └── FactControllerTest.java
-                        ├── service/
-                        │   ├── FactServiceTest.java
-                        │   └── CryptoServiceTest.java
-                        └── integration/
-                            └── FactApiIntegrationTest.java
+                └── memvra/
+                    ├── controller/
+                    │   └── FactControllerTest.java
+                    ├── service/
+                    │   ├── FactServiceTest.java
+                    │   └── CryptoServiceTest.java
+                    └── integration/
+                        └── FactApiIntegrationTest.java
 ```
 
 ### Client SDK Module
@@ -79,7 +77,7 @@ MemVra/
 ```
 memvra-client-java/
 ├── build.gradle
-└── src/main/java/com/compyle/memvra/client/
+└── src/main/java/com/memvra/client/
     ├── MemVraClient.java
     ├── Fact.java
     └── SourceType.java
@@ -162,7 +160,7 @@ COMMENT ON TABLE fact_records IS 'Immutable ledger of verified facts with crypto
 
 ### Fact Recording Endpoint
 
-**File**: `src/main/java/com/compyle/memvra/controller/FactController.java`
+**File**: `src/main/java/com/memvra/controller/FactController.java`
 
 **Route**: `POST /v1/facts`
 
@@ -277,7 +275,7 @@ Clients can download the fact + signature and recompute:
 
 ### Fact Service
 
-**File**: `src/main/java/com/compyle/memvra/service/FactService.java`
+**File**: `src/main/java/com/memvra/service/FactService.java`
 
 **Core Method**: `recordFact(CreateFactRequest request)`
 
@@ -299,7 +297,7 @@ Clients can download the fact + signature and recompute:
 
 ### Crypto Service
 
-**File**: `src/main/java/com/compyle/memvra/service/CryptoService.java`
+**File**: `src/main/java/com/memvra/service/CryptoService.java`
 
 **Algorithm**: HMAC-SHA256
 
@@ -357,13 +355,13 @@ spring:
 
 logging:
   level:
-    com.compyle.memvra: DEBUG
+    com.memvra: DEBUG
     org.springframework.web: INFO
   pattern:
     correlation-id: "[%X{correlationId}]"
 
 # Custom application properties
-compyle:
+memvra:
   fact:
     max-content-length: 1000
     secret-key: ${MEMVRA_SECRET_KEY:default-dev-secret-change-in-production}
@@ -387,7 +385,7 @@ compyle:
 
 ### Unit Tests
 
-**Files**: `src/test/java/com/compyle/memvra/service/*Test.java`
+**Files**: `src/test/java/com/memvra/service/*Test.java`
 
 **Test Coverage Targets**:
 
@@ -414,7 +412,7 @@ compyle:
 
 ### Integration Tests
 
-**File**: `src/test/java/com/compyle/memvra/integration/FactApiIntegrationTest.java`
+**File**: `src/test/java/com/memvra/integration/FactApiIntegrationTest.java`
 
 **TestContainers Setup**:
 
@@ -433,7 +431,7 @@ compyle:
 
 ### Client SDK Tests
 
-**File**: `memvra-client-java/src/test/java/com/compyle/memvra/client/MemVraClientTest.java`
+**File**: `memvra-client-java/src/test/java/com/memvra/client/MemVraClientTest.java`
 
 **Test Cases**:
 
@@ -463,7 +461,7 @@ compyle:
 
 ### MemVra Client Library
 
-**File**: `memvra-client-java/src/main/java/com/compyle/memvra/client/MemVraClient.java`
+**File**: `memvra-client-java/src/main/java/com/memvra/client/MemVraClient.java`
 
 **Core Methods**:
 

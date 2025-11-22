@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: memvra
+  jpa:
+    open-in-view: false
+
+logging:
+  level:
+    com.memvra: WARN
+    org.springframework.web: INFO
+
+memvra:
+  security:
+    api-key:
+      enabled: true
+      value: ${MEMVRA_API_KEY:}
+      exclude-paths:
+        - /actuator/health
+      rate-limit-per-minute: ${MEMVRA_API_KEY_RATE_LIMIT:60}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

@@ -1,0 +1,72 @@
+package com.memvra.model;
+
+import com.memvra.enums.SourceType;
+import jakarta.persistence.*;
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "fact_records")
+public class FactRecord {
+    @Id
+    @Column(name = "fact_id", nullable = false)
+    private UUID factId;
+
+    @Column(name = "content", nullable = false)
+    private String content;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "source_type", nullable = false, length = 50)
+    private SourceType sourceType;
+
+    @Column(name = "source_id", nullable = false)
+    private String sourceId;
+
+    @Column(name = "recorded_by", nullable = false, length = 100)
+    private String recordedBy;
+
+    @Column(name = "created_at", nullable = false)
+    private OffsetDateTime createdAt;
+
+    @Column(name = "signature", nullable = false, columnDefinition = "BYTEA")
+    private byte[] signature;
+
+    @Column(name = "revoked", nullable = false)
+    private boolean revoked = false;
+
+    @Column(name = "revocation_reason")
+    private String revocationReason;
+
+    @Column(name = "revoked_at")
+    private OffsetDateTime revokedAt;
+
+    public UUID getFactId() { return factId; }
+    public void setFactId(UUID factId) { this.factId = factId; }
+
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
+
+    public SourceType getSourceType() { return sourceType; }
+    public void setSourceType(SourceType sourceType) { this.sourceType = sourceType; }
+
+    public String getSourceId() { return sourceId; }
+    public void setSourceId(String sourceId) { this.sourceId = sourceId; }
+
+    public String getRecordedBy() { return recordedBy; }
+    public void setRecordedBy(String recordedBy) { this.recordedBy = recordedBy; }
+
+    public OffsetDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
+
+    public byte[] getSignature() { return signature; }
+    public void setSignature(byte[] signature) { this.signature = signature; }
+
+    public boolean isRevoked() { return revoked; }
+    public void setRevoked(boolean revoked) { this.revoked = revoked; }
+
+    public String getRevocationReason() { return revocationReason; }
+    public void setRevocationReason(String revocationReason) { this.revocationReason = revocationReason; }
+
+    public OffsetDateTime getRevokedAt() { return revokedAt; }
+    public void setRevokedAt(OffsetDateTime revokedAt) { this.revokedAt = revokedAt; }
+}
