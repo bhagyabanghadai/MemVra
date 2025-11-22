@@ -1,186 +1,125 @@
 # MemVra Truth Ledger
 
-MemVra is a Spring Boot service that certifies "facts" via mandatory provenance and HMAC-SHA256 signatures stored in an immutable PostgreSQL ledger. Agents use the SDK to verify facts locally before taking actions.
+MemVra is a cryptographically verifiable "Truth Ledger" for AI Agents. It allows agents to record facts with mandatory provenance, which are then signed with HMAC-SHA256 and stored in an immutable ledger.
 
-## Status
-- Phase 1 (MVP): Delivered
-  - APIs: POST `/v1/facts`, GET `/v1/facts/{factId}`
-  - HMAC-SHA256 signing and Base64 signature
-  - Java client SDK (`memvra-client-java`) with `record()` and `verify(factId, secretKey)`
-  - Global JSON error handling (422 validation, 400 bad JSON, structured 404)
-  - Spring Boot Actuator: `/actuator/health`, `/actuator/info`
-  - Integration test (TestContainers + Postgres) verifies end-to-end HMAC
-  - Roadmap and project logbook maintained in repo
+## 🚀 Features
 
-## Tech Stack
-- Java 17, Spring Boot 3.2
-- Gradle build
-- PostgreSQL + Flyway
-- TestContainers (integration tests)
+### Core "Truth Oracle"
+- **Immutable Ledger**: Facts are cryptographically signed upon recording.
+- **Integrity Verification**: Every read operation re-computes the hash to ensure data hasn't been tampered with.
+- **Time-Travel Search**: Query facts as they existed at any point in time.
+- **Fact Revocation**: Explicitly revoke incorrect facts with a reason, maintaining the audit trail.
 
-## Getting Started
-1. Ensure Java 17+ and Gradle 8+ installed.
-2. Start a local PostgreSQL (example with Docker):
-   ```bash
-   docker run --rm -e POSTGRES_DB=memvra -e POSTGRES_USER=memvra -e POSTGRES_PASSWORD=password -p 5432:5432 postgres:15
-   ```
-3. Set environment variable for HMAC key (change in real env):
-   - `MEMVRA_SECRET_KEY` (e.g., a 32+ character random string)
-4. Build and run:
-   ```bash
-   gradle bootRun
-   ```
-5. Health check:
-  ```bash
-  curl http://localhost:8080/actuator/health
-  ```
+### Developer Experience
+- **Developer Dashboard**: Manage API keys and view usage statistics.
+- **Granular API Keys**: Generate unique keys for different agents.
+- **Full-Stack Pagination**: Efficiently browse millions of records.
+- **Advanced Search**: Filter by Source ID, Source Type, Agent ID, and Date Range.
 
-6. OpenAPI docs:
-   - JSON spec: `http://localhost:8080/v3/api-docs`
-   - Swagger UI: `http://localhost:8080/swagger-ui/index.html`
+## 🛠 Tech Stack
 
-## Dataset Ingestion (Wikidata)
+### Backend
+- **Java 17** & **Spring Boot 3.2**
+- **PostgreSQL** (Data Storage)
+- **Flyway** (Database Migrations)
+- **Spring Security + JWT** (Authentication)
 
-To validate end-to-end behavior and deduplication, ingest country→capital facts from Wikidata.
+### Frontend
+- **React** & **TypeScript**
+- **TailwindCSS** (Styling)
+- **TanStack Query** (State Management)
+- **Framer Motion** (Animations)
+
+## 🏁 Getting Started
 
 ### Prerequisites
-- Python 3.8+
-- `pip install requests`
-- Running MemVra instance (e.g., `http://localhost:8080` or `http://localhost:8081`)
+- Java 17+
+- Node.js 18+
+- Docker & Docker Compose
 
-### Environment
-- `MEMVRA_BASE_URL` (default `http://localhost:8081`)
-- `MEMVRA_API_KEY` (required)
-- `MEMVRA_SECRET_KEY` (optional; if set, the script verifies HMAC signatures locally)
+### Quick Start (Full Stack)
 
-### Run
+1. **Start Infrastructure (DB & Backend)**
+   ```bash
+   docker compose up -d
+   ```
+   The backend will be available at `http://localhost:8080`.
+
+2. **Start Frontend**
+   ```bash
+   cd memvra-frontend
+   npm install
+   npm run dev
+   ```
+   Open `http://localhost:5173` in your browser.
+
+3. **Create an Account**
+   - Go to `http://localhost:5173/signup`.
+   - Create an account and log in.
+   - Navigate to the **Dashboard** to generate your first API Key.
+
+## 📖 API Documentation
+
+### Authentication
+Include your API Key in the header of requests:
+`X-API-Key: mv_sk_...`
+
+### Endpoints
+
+#### Record a Fact
+```http
+POST /v1/facts
+Content-Type: application/json
+
+{
+  "content": "User prefers dark mode",
+  "source_type": "user_input",
+  "source_id": "chat:123",
+  "recorded_by": "agent-007"
+}
+```
+
+#### Search Facts
+```http
+GET /v1/facts?source_id=chat:123&from_date=2023-01-01T00:00:00Z
+```
+
+#### Get Fact with Verification
+```http
+GET /v1/facts/{fact_id}
+```
+*Returns 200 OK only if the cryptographic signature is valid.*
+
+#### Revoke a Fact
+```http
+POST /v1/facts/{fact_id}/revoke
+Content-Type: application/json
+
+{
+  "reason": "User corrected their statement"
+}
+```
+
+## 🔒 Security
+
+- **HMAC-SHA256**: All facts are signed using a secret key stored on the server.
+- **JWT**: User sessions for the dashboard are managed via stateless JWTs.
+- **Database-Backed Keys**: API keys are hashed (SHA-256) before storage.
+
+## 📂 Project Structure
+
+- `src/main/java`: Spring Boot Backend
+- `memvra-frontend`: React Frontend
+- `deployment`: Kubernetes/Cloud Run configs
+- `scripts`: Verification and utility scripts
+
+## 🧪 Testing
+
+Run the full verification suite:
 ```bash
-python scripts/ingest_wikidata.py --limit 20
+python scripts/verify_deployment.py
 ```
 
-The script:
-- Queries Wikidata for country→capital (`LIMIT` configurable)
-- Posts to `POST /v1/facts` with `source_type=api_response` and `source_id=wikidata:<Qid>:capital:<Qid>`
-- Respects rate limits (default sleep 0.6s between posts)
-- Optionally recomputes HMAC based on server response and compares with `signature`
-- Prints a summary: total, created, conflicts (duplicates), errors, verified
+## 📜 License
 
-Re-running the script with the same inputs returns `409 CONFLICT` for duplicates and does not create new records.
-
-## Containerization
-
-- Build and run locally with Docker Compose:
-  ```bash
-  docker compose up --build -d
-  ```
-- Check health:
-  ```bash
-  curl http://localhost:8080/actuator/health
-  ```
-- Stop and remove containers:
-  ```bash
-  docker compose down
-  ```
-
-Environment variables used by the app (set in `docker-compose.yml` and override-able):
-- `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`
-- `MEMVRA_SECRET_KEY` (choose a strong secret in non-dev environments)
-
-The Dockerfile is multi-stage: it builds the Spring Boot jar using Gradle in the builder stage and runs it on a slim JRE image for smaller deployments.
-
-## API Key Authentication
-
-- Enable with environment variables or properties:
-  - `MEMVRA_API_KEY_ENABLED=true`
-  - `MEMVRA_API_KEY=your-strong-api-key`
-- Client requests must include the header: `X-API-Key: your-strong-api-key`.
-- In Compose, auth is enabled by default with a dev key. Change it for your setup.
- 
-## CORS (Front-end Integration)
-
-- For browser-based front ends, configure allowed origins:
-  - `MEMVRA_CORS_ORIGINS` (comma-separated, e.g. `http://localhost:5173,http://localhost:3000`)
-- CORS covers `/v1/**`, `/v3/api-docs/**`, and `/swagger-ui/**` for local development.
-- The response exposes `X-Correlation-Id` so you can trace requests end-to-end.
- 
-### Using Swagger UI with API Key
-- Open `http://localhost:8080/swagger-ui/index.html` (or your port).
-- Click `Authorize`, select `ApiKeyAuth`, and enter your API key.
-- Endpoints are annotated to require `ApiKeyAuth`; unauthenticated requests return `401` when auth is enabled.
-
-## Observability
-
-- Every request gets a correlation ID (header `X-Correlation-Id`).
-- The same ID is echoed in the response and used in MDC for logs.
- - Actuator exposure is limited to `health` by default.
- - JPA Open-In-View is disabled to avoid lazy-loading pitfalls and align with best practices.
-
-## Build & Test
-
-- Unit tests: `gradle test`
-- Integration tests only: `gradle integrationTest -q`
-- All tests with Docker: `gradle test -PincludeIntegration=true -q`
-
-## API Examples
-Record a fact:
-```bash
-curl -X POST http://localhost:8080/v1/facts \
-  -H "X-API-Key: your-strong-api-key" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "content": "Customer reported card as stolen",
-    "source_type": "user_input",
-    "source_id": "chat:session_xyz:turn_5",
-    "recorded_by": "agent-support-bot-v2"
-  }'
-```
-
-Retrieve a fact:
-```bash
-curl -X GET http://localhost:8080/v1/facts/{fact_id}
-  -H "X-API-Key: your-strong-api-key"
-```
-
-## SDK Usage (Java)
-```java
-MemVraClient client = MemVraClient.builder()
-    .baseUrl("http://localhost:8080")
-    .apiKey("test-key")
-    .connectTimeoutMs(3000)
-    .readTimeoutMs(5000)
-    .maxRetries(2)
-    .retryBackoffMs(250)
-    .build();
-Fact fact = new Fact("Test fact")
-    .withSource(SourceType.USER_INPUT, "test:source:1")
-    .recordedBy("test-agent");
-
-Map<?,?> record = client.record(fact);
-String factId = (String) record.get("fact_id");
-boolean ok = client.verify(factId, System.getenv("MEMVRA_SECRET_KEY"));
-```
-
-## Modules
-- Root module: Spring Boot API service
-- `memvra-client-java`: client SDK for recording and verifying facts
-
-## Tests
-- Run unit and integration tests:
-```bash
-gradle test
-```
-Integration test uses TestContainers (Docker required) to validate HMAC end-to-end.
-
-## Docs & Roadmap
-- Roadmap: `roadmap.md`
-- Project Log Book: `logbook.md`
-- OpenAPI: `/v3/api-docs` and `/swagger-ui`
-
-## Production Notes
-- Configure DB via environment variables
-- Do not use the dev default secret key in production
- - Database integrity: a unique constraint prevents duplicate facts per `(content, source_id, recorded_by)`. Migrations apply this automatically (`V2__Add_unique_fact_constraint.sql`).
- - Security startup checks log errors if a weak/default secret is used or API key is enabled without a value.
- - Authentication & rate limiting: When enabled, API key auth guards endpoints; write operations are rate-limited with `429` and `Retry-After` guidance.
- - Logging: default app log level is `INFO`.
- - Plan improvements: authentication, rate limiting, metrics, structured logging, freshness metadata
+MIT
