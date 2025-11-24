@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Pattern;
 public class CreateFactRequest {
 
     @NotBlank
-    @Size(max = 1000)
+    @Size(max = 50000, message = "content must not exceed 50000 characters")
     private String content;
 
     @JsonProperty("source_type")
@@ -19,13 +19,13 @@ public class CreateFactRequest {
 
     @JsonProperty("source_id")
     @NotBlank
-    @Size(max = 200)
+    @Size(max = 500, message = "source_id must not exceed 500 characters")
     @Pattern(regexp = "[a-zA-Z0-9_:\\-.]+", message = "source_id contains invalid characters")
     private String sourceId;
 
     @JsonProperty("recorded_by")
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 200, message = "recorded_by must not exceed 200 characters")
     private String recordedBy;
 
     public String getContent() { return content; }

@@ -5,16 +5,24 @@ import com.memvra.model.CreateFactRequest;
 import com.memvra.model.FactRecord;
 import com.memvra.model.FactRecordDto;
 import com.memvra.repository.FactRepository;
-import org.springframework.dao.DataIntegrityViolationException;
+import com.memvra.controller.BadRequestException;
+import com.memvra.controller.NotFoundException;
+import com.memvra.controller.ConflictException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import jakarta.persistence.criteria.Predicate;
 
 @Service
 public class FactService {
@@ -32,7 +40,7 @@ public class FactService {
     }
 
     @Transactional
-    public java.util.List<FactRecordDto> recordFacts(java.util.List<CreateFactRequest> requests) {
+    public List<FactRecordDto> recordFacts(List<CreateFactRequest> requests) {
         return requests.stream().map(this::recordFact).toList();
     }
 
@@ -48,6 +56,69 @@ public class FactService {
         String externalId = "mv-" + id;
         OffsetDateTime createdAt = OffsetDateTime.now(java.time.ZoneOffset.UTC).withNano(0);
 
+        String payload = buildPayload(externalId, request, createdAt);
+        byte[] signature = crypto.sign(payload);
+
+        FactRecord record = new FactRecord();
+        record.setFactId(id);
+        record.setContent(request.getContent());
+        record.setSourceType(request.getSourceType());
+        record.setSourceId(request.getSourceId());
+        record.setRecordedBy(request.getRecordedBy());
+        record.setCreatedAt(createdAt);
+        record.setSignature(signature);
+        record.setRevoked(false);
+
+        try {
+            record = repository.save(record);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            throw new ConflictException("Duplicate fact detected");
+        }
+
+        return toDto(record);
+    }
+
+    public Optional<FactRecordDto> getFact(String externalId) {
+        UUID id = parseExternalId(externalId);
+        return repository.findById(id).map(this::toDto);
+    }
+
+    public Page<FactRecordDto> searchFacts(String sourceId, String recordedBy, SourceType sourceType, OffsetDateTime fromDate, OffsetDateTime toDate, Pageable pageable) {
+        Specification<FactRecord> spec = (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (sourceId != null) predicates.add(cb.equal(root.get("sourceId"), sourceId));
+            if (recordedBy != null) predicates.add(cb.equal(root.get("recordedBy"), recordedBy));
+            if (sourceType != null) predicates.add(cb.equal(root.get("sourceType"), sourceType));
+            if (fromDate != null) predicates.add(cb.greaterThanOrEqualTo(root.get("createdAt"), fromDate));
+            if (toDate != null) predicates.add(cb.lessThanOrEqualTo(root.get("createdAt"), toDate));
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+        return repository.findAll(spec, pageable).map(this::toDto);
+    }
+
+    @Transactional
+    public void revokeFact(String externalId, String reason) {
+        UUID id = parseExternalId(externalId);
+        FactRecord record = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Fact not found"));
+        
+        if (record.isRevoked()) {
+            return; // Already revoked
+        }
+
+        record.setRevoked(true);
+        record.setRevocationReason(reason);
+        record.setRevokedAt(OffsetDateTime.now(java.time.ZoneOffset.UTC));
+        repository.save(record);
+    }
+
+    private void validateRequest(CreateFactRequest request) {
+        if (request.getContent() == null || request.getContent().isBlank()) {
+            throw new IllegalArgumentException("content must be provided");
+        }
+        if (request.getContent().length() > maxContentLength) {
+            throw new IllegalArgumentException("content exceeds max length of " + maxContentLength);
+        }
         if (request.getSourceType() == null) {
             throw new IllegalArgumentException("source_type must be provided");
         }
@@ -74,7 +145,22 @@ public class FactService {
         try {
             return UUID.fromString(raw);
         } catch (IllegalArgumentException ex) {
-        throw new com.memvra.controller.BadRequestException("Invalid factId format");
+            throw new BadRequestException("Invalid factId format");
         }
+    }
+
+    private FactRecordDto toDto(FactRecord record) {
+        return new FactRecordDto(
+            "mv-" + record.getFactId(),
+            record.getContent(),
+            record.getSourceType(),
+            record.getSourceId(),
+            record.getRecordedBy(),
+            record.getCreatedAt(),
+            crypto.toBase64(record.getSignature()),
+            record.isRevoked(),
+            record.getRevocationReason(),
+            record.getRevokedAt()
+        );
     }
 }

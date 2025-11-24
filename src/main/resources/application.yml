@@ -1,3 +1,8 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+
 server:
   port: 8080
 
@@ -24,17 +29,26 @@ spring:
     enabled: true
     locations: classpath:db/migration
 
+memvra:
+  security:
+    api-key:
       enabled: ${MEMVRA_API_KEY_ENABLED:false}
       value: ${MEMVRA_API_KEY:}
       exclude-paths:
         - /swagger-ui/**
         - /v3/api-docs/**
         - /actuator/health
+        - /v1/auth/**
+        - /v1/dashboard/**
       rate-limit-per-minute: ${MEMVRA_API_KEY_RATE_LIMIT:60}
   cors:
-    # Comma-separated list of allowed origins for browser clients in development.
-    # Example: http://localhost:5173,http://localhost:3000
     allowed-origins: ${MEMVRA_CORS_ORIGINS:}
+  jwt:
+    secret: ${MEMVRA_JWT_SECRET:9a4f2c8d3b7e1f5g6h0j4k8l2m5n9p3q7r1s5t9u3v7w1x5y9z3a7b1c5d9e3f7}
+    expiration-ms: ${MEMVRA_JWT_EXPIRATION_MS:86400000}
+  fact:
+    max-content-length: 50000
+    secret-key: ${MEMVRA_SECRET_KEY:local-dev-change-me}
 
 management:
   endpoints:

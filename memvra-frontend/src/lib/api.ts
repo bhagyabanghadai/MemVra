@@ -9,16 +9,10 @@ export const api = axios.create({
         // Using local dev key as configured in docker-compose
         'X-API-Key': 'local-dev-api-key'
     },
+    withCredentials: true // Send cookies with requests
 });
 
-// Add auth token to requests
-api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
+// Cookies are automatically sent by browser, no need for interceptor
 
 export interface FactRecord {
     fact_id: string;
