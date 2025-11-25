@@ -44,7 +44,7 @@ memvra:
   cors:
     allowed-origins: ${MEMVRA_CORS_ORIGINS:}
   jwt:
-    secret: ${MEMVRA_JWT_SECRET:9a4f2c8d3b7e1f5g6h0j4k8l2m5n9p3q7r1s5t9u3v7w1x5y9z3a7b1c5d9e3f7}
+    secret: ${MEMVRA_JWT_SECRET:9a4f2c8d3b7e1f5g6h0j4k8l2m5n9p3q7r1s5t9u3v7w1x5y9z3a7b1c5d9e3f7g8h2i6j0k4l8m2n6o0p4q8r2s6t0u4v8w2x6y0z4a8b2c6d0e4f8g2h6i0j4k8l2m6n0p4q8r2s6t0u4v8w2x6y0z4}
     expiration-ms: ${MEMVRA_JWT_EXPIRATION_MS:86400000}
   fact:
     max-content-length: 50000
