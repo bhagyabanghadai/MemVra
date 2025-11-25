@@ -1,0 +1,1967 @@
+[
+  {
+    "fact_id": "synthetic_000",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-01-01T00:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_001",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-01T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_002",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-01-02T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_003",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-01-02T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_004",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-01-03T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_005",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-03T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_006",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-04T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_007",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-01-04T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_008",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-05T00:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_009",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-01-05T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_010",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-01-06T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_011",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-06T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_012",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-01-07T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_013",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-07T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_014",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-08T00:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_015",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-01-08T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_016",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-09T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_017",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-01-09T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_018",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-01-10T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_019",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-01-10T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_020",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-01-11T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_021",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-01-11T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_022",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-12T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_023",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-01-12T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_024",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-13T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_025",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-01-13T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_026",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-14T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_027",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-14T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_028",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-15T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_029",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-01-15T12:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_030",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-16T00:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_031",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-01-16T12:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_032",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-01-17T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_033",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-17T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_034",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-01-18T00:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_035",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-01-18T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_036",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-01-19T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_037",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-19T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_038",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-20T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_039",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-20T12:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_040",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-01-21T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_041",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-01-21T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_042",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-22T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_043",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-01-22T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_044",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-23T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_045",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-23T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_046",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-01-24T00:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_047",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-01-24T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_048",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-01-25T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_049",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-01-25T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_050",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-01-26T00:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_051",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-01-26T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_052",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-01-27T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_053",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-01-27T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_054",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-01-28T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_055",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-28T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_056",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-29T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_057",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-01-29T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_058",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-01-30T00:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_059",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-01-30T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_060",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-01-31T00:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_061",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-01-31T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_062",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-01T00:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_063",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-01T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_064",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-02T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_065",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-02-02T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_066",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-03T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_067",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-03T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_068",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-02-04T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_069",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-02-04T12:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_070",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-02-05T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_071",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-05T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_072",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-02-06T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_073",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-06T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_074",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-02-07T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_075",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-07T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_076",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-08T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_077",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-08T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_078",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-09T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_079",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-09T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_080",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-10T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_081",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-02-10T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_082",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-11T00:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_083",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-11T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_084",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-12T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_085",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-02-12T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_086",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-13T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_087",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-13T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_088",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-14T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_089",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-14T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_090",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-15T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_091",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-15T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_092",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-02-16T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_093",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-02-16T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_094",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-17T00:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_095",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-02-17T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_096",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-18T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_097",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-02-18T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_098",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-19T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_099",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-02-19T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_100",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-20T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_101",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-20T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_102",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-02-21T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_103",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-21T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_104",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-02-22T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_105",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-02-22T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_106",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-23T00:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_107",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-23T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_108",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-02-24T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_109",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-02-24T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_110",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-25T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_111",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-25T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_112",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-02-26T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_113",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-26T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_114",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-02-27T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_115",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-02-27T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_116",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-02-28T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_117",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-02-28T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_118",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-01T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_119",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-03-01T12:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_120",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-02T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_121",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-03-02T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_122",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-03T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_123",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-03-03T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_124",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-04T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_125",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-03-04T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_126",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-05T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_127",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-03-05T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_128",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-03-06T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_129",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-03-06T12:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_130",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-03-07T00:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_131",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-07T12:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_132",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-03-08T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_133",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-03-08T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_134",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-03-09T00:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_135",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-03-09T12:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_136",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-10T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_137",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-03-10T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_138",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-11T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_139",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-03-11T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_140",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-03-12T00:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_141",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-12T12:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_142",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-03-13T00:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_143",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-03-13T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_144",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-14T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_145",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-03-14T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_146",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-15T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_147",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-15T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_148",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-16T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_149",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-16T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_150",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-17T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_151",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-03-17T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_152",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-18T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_153",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-18T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_154",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-03-19T00:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_155",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-03-19T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_156",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-20T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_157",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-03-20T12:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_158",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-21T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_159",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-03-21T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_160",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-22T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_161",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-03-22T12:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_162",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-23T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_163",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-23T12:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_164",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-24T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_165",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-03-24T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_166",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-25T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_167",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-03-25T12:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_168",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-03-26T00:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_169",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-03-26T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_170",
+    "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+    "created_at": "2025-03-27T00:00:00",
+    "emotions": [
+      "calm",
+      "neutral"
+    ]
+  },
+  {
+    "fact_id": "synthetic_171",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-03-27T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_172",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-03-28T00:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_173",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-03-28T12:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_174",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-03-29T00:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_175",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-03-29T12:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_176",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-03-30T00:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_177",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-03-30T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_178",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-03-31T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_179",
+    "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+    "created_at": "2025-03-31T12:00:00",
+    "emotions": [
+      "frustrated",
+      "angry",
+      "disappointed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_180",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-04-01T00:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_181",
+    "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+    "created_at": "2025-04-01T12:00:00",
+    "emotions": [
+      "bored",
+      "calm"
+    ]
+  },
+  {
+    "fact_id": "synthetic_182",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-04-02T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_183",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-04-02T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_184",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-04-03T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_185",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-04-03T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_186",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-04-04T00:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_187",
+    "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+    "created_at": "2025-04-04T12:00:00",
+    "emotions": [
+      "satisfied",
+      "tired",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_188",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-04-05T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  },
+  {
+    "fact_id": "synthetic_189",
+    "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+    "created_at": "2025-04-05T12:00:00",
+    "emotions": [
+      "curious",
+      "confused",
+      "excited"
+    ]
+  },
+  {
+    "fact_id": "synthetic_190",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-04-06T00:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_191",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-04-06T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_192",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-04-07T00:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_193",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-04-07T12:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_194",
+    "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+    "created_at": "2025-04-08T00:00:00",
+    "emotions": [
+      "happy",
+      "satisfied",
+      "proud"
+    ]
+  },
+  {
+    "fact_id": "synthetic_195",
+    "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
+    "created_at": "2025-04-08T12:00:00",
+    "emotions": [
+      "happy",
+      "excited",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_196",
+    "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+    "created_at": "2025-04-09T00:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "confused"
+    ]
+  },
+  {
+    "fact_id": "synthetic_197",
+    "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+    "created_at": "2025-04-09T12:00:00",
+    "emotions": [
+      "happy",
+      "calm",
+      "nostalgic"
+    ]
+  },
+  {
+    "fact_id": "synthetic_198",
+    "content": "Mentor session went well. Helping junior developers reminds me how far I've come. Sometimes you need to look back to appreciate progress.",
+    "created_at": "2025-04-10T00:00:00",
+    "emotions": [
+      "proud",
+      "nostalgic",
+      "satisfied"
+    ]
+  },
+  {
+    "fact_id": "synthetic_199",
+    "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
+    "created_at": "2025-04-10T12:00:00",
+    "emotions": [
+      "frustrated",
+      "anxious",
+      "overwhelmed"
+    ]
+  }
+]
