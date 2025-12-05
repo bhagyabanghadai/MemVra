@@ -1,29 +1,29 @@
 {
   "facts": [
     {
-      "fact_id": "synthetic_000",
-      "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
-      "created_at": "2025-01-01T00:00:00"
+      "fact_id": "synthetic_000000",
+      "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+      "created_at": "2020-01-01T00:00:00"
     },
     {
-      "fact_id": "synthetic_001",
+      "fact_id": "synthetic_000001",
+      "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
+      "created_at": "2020-01-01T00:30:00"
+    },
+    {
+      "fact_id": "synthetic_000002",
+      "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+      "created_at": "2020-01-01T01:00:00"
+    },
+    {
+      "fact_id": "synthetic_000003",
       "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
-      "created_at": "2025-01-01T12:00:00"
+      "created_at": "2020-01-01T01:30:00"
     },
     {
-      "fact_id": "synthetic_002",
+      "fact_id": "synthetic_000004",
       "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
-      "created_at": "2025-01-02T00:00:00"
-    },
-    {
-      "fact_id": "synthetic_003",
-      "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
-      "created_at": "2025-01-02T12:00:00"
-    },
-    {
-      "fact_id": "synthetic_004",
-      "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
-      "created_at": "2025-01-03T00:00:00"
+      "created_at": "2020-01-01T02:00:00"
     }
   ]
 }

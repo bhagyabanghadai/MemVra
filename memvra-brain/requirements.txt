@@ -6,3 +6,11 @@ pydantic==2.5.3
 numpy==1.26.3
 requests==2.31.0
 python-multipart==0.0.6
+
+# Brain System Dependencies
+ollama==0.1.6
+sentence-transformers==2.5.1
+networkx==3.2.1
+scikit-learn==1.4.0
+scipy==1.12.0
+huggingface-hub>=0.20.0

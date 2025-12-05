@@ -1,104 +1,104 @@
 {
   "facts": [
     {
-      "fact_id": "synthetic_000",
-      "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
-      "created_at": "2025-01-01T00:00:00"
-    },
-    {
-      "fact_id": "synthetic_001",
-      "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
-      "created_at": "2025-01-01T12:00:00"
-    },
-    {
-      "fact_id": "synthetic_002",
-      "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
-      "created_at": "2025-01-02T00:00:00"
-    },
-    {
-      "fact_id": "synthetic_003",
-      "content": "Database performance issues are getting worse. Every query is slow. Management is pushing for faster delivery but the infrastructure isn't ready.",
-      "created_at": "2025-01-02T12:00:00"
-    },
-    {
-      "fact_id": "synthetic_004",
-      "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
-      "created_at": "2025-01-03T00:00:00"
-    },
-    {
-      "fact_id": "synthetic_005",
-      "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
-      "created_at": "2025-01-03T12:00:00"
-    },
-    {
-      "fact_id": "synthetic_006",
-      "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
-      "created_at": "2025-01-04T00:00:00"
-    },
-    {
-      "fact_id": "synthetic_007",
-      "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
-      "created_at": "2025-01-04T12:00:00"
-    },
-    {
-      "fact_id": "synthetic_008",
-      "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
-      "created_at": "2025-01-05T00:00:00"
-    },
-    {
-      "fact_id": "synthetic_009",
-      "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
-      "created_at": "2025-01-05T12:00:00"
-    },
-    {
-      "fact_id": "synthetic_010",
-      "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
-      "created_at": "2025-01-06T00:00:00"
-    },
-    {
-      "fact_id": "synthetic_011",
-      "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
-      "created_at": "2025-01-06T12:00:00"
-    },
-    {
-      "fact_id": "synthetic_012",
+      "fact_id": "synthetic_000000",
       "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
-      "created_at": "2025-01-07T00:00:00"
+      "created_at": "2020-01-01T00:00:00"
     },
     {
-      "fact_id": "synthetic_013",
+      "fact_id": "synthetic_000001",
       "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
-      "created_at": "2025-01-07T12:00:00"
+      "created_at": "2020-01-01T00:30:00"
     },
     {
-      "fact_id": "synthetic_014",
-      "content": "Had a great day at work today. Successfully completed the authentication feature I've been working on. Team appreciated my contributions during the code review.",
-      "created_at": "2025-01-08T00:00:00"
+      "fact_id": "synthetic_000002",
+      "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+      "created_at": "2020-01-01T01:00:00"
     },
     {
-      "fact_id": "synthetic_015",
-      "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
-      "created_at": "2025-01-08T12:00:00"
+      "fact_id": "synthetic_000003",
+      "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+      "created_at": "2020-01-01T01:30:00"
     },
     {
-      "fact_id": "synthetic_016",
-      "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
-      "created_at": "2025-01-09T00:00:00"
+      "fact_id": "synthetic_000004",
+      "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+      "created_at": "2020-01-01T02:00:00"
     },
     {
-      "fact_id": "synthetic_017",
-      "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
-      "created_at": "2025-01-09T12:00:00"
+      "fact_id": "synthetic_000005",
+      "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
+      "created_at": "2020-01-01T02:30:00"
     },
     {
-      "fact_id": "synthetic_018",
+      "fact_id": "synthetic_000006",
       "content": "Woke up early and went for a run. Felt energized throughout the day. Managed to finish all my tasks ahead of schedule.",
-      "created_at": "2025-01-10T00:00:00"
+      "created_at": "2020-01-01T03:00:00"
     },
     {
-      "fact_id": "synthetic_019",
+      "fact_id": "synthetic_000007",
+      "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+      "created_at": "2020-01-01T03:30:00"
+    },
+    {
+      "fact_id": "synthetic_000008",
       "content": "This week has been challenging but I learned a lot. The optimization work was harder than expected, but seeing the performance improvements makes it worthwhile.",
-      "created_at": "2025-01-10T12:00:00"
+      "created_at": "2020-01-01T04:00:00"
+    },
+    {
+      "fact_id": "synthetic_000009",
+      "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+      "created_at": "2020-01-01T04:30:00"
+    },
+    {
+      "fact_id": "synthetic_000010",
+      "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+      "created_at": "2020-01-01T05:00:00"
+    },
+    {
+      "fact_id": "synthetic_000011",
+      "content": "Finished reading a technical book on system design. Some concepts are still unclear, but I'm starting to see patterns in how large systems are built.",
+      "created_at": "2020-01-01T05:30:00"
+    },
+    {
+      "fact_id": "synthetic_000012",
+      "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+      "created_at": "2020-01-01T06:00:00"
+    },
+    {
+      "fact_id": "synthetic_000013",
+      "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+      "created_at": "2020-01-01T06:30:00"
+    },
+    {
+      "fact_id": "synthetic_000014",
+      "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+      "created_at": "2020-01-01T07:00:00"
+    },
+    {
+      "fact_id": "synthetic_000015",
+      "content": "Had a disagreement with a colleague about the project direction. The meeting didn't go well. I feel like my suggestions aren't being heard.",
+      "created_at": "2020-01-01T07:30:00"
+    },
+    {
+      "fact_id": "synthetic_000016",
+      "content": "Dealing with a critical bug in production. Users are reporting login failures. Spent hours debugging but haven't found the root cause yet. Feeling stressed.",
+      "created_at": "2020-01-01T08:00:00"
+    },
+    {
+      "fact_id": "synthetic_000017",
+      "content": "Spent quality time with family this evening. We had dinner together and shared stories from our week. These moments remind me what's truly important.",
+      "created_at": "2020-01-01T08:30:00"
+    },
+    {
+      "fact_id": "synthetic_000018",
+      "content": "Working on documentation today. Not the most exciting task, but it needs to be done. At least I can listen to music while writing.",
+      "created_at": "2020-01-01T09:00:00"
+    },
+    {
+      "fact_id": "synthetic_000019",
+      "content": "Routine day at the office. Attended meetings, reviewed some code, replied to emails. Nothing particularly exciting or frustrating.",
+      "created_at": "2020-01-01T09:30:00"
     }
   ]
 }
