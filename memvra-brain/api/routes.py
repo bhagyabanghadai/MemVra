@@ -115,7 +115,47 @@ async def recall_optimized(query: str, user_id: str = "default"):
         print(f"Error in recall: {e}")
         return {"result": f"Error: {str(e)}"}
 
-@router.post("/v1/logical/store")
+@router.post("/v1/logical/stream")
+async def stream_logic(query: str, user_id: str = "default"):
+    """
+    Streaming Endpoint for Chat Widget
+    """
+    try:
+        user_profile = get_user_profile(user_id)
+        user_profile.increment_query_count()
+        
+        # Predictive Engine Hook
+        predictive_engine.record_query_pattern(
+            user_id, query, datetime.now(), user_profile
+        )
+        
+        standardized_query = linguistic_profiler.understand_query(query, user_profile)
+        enhanced = llama_service.enhance_query(standardized_query, user_profile.to_dict())
+        
+        # Retrieve context
+        results = bdh_graph.retrieve(
+            query=enhanced["enhanced_query"],
+            user_id=user_id,
+            level=2
+        )
+        
+        # Generator wrapper
+        def generate():
+            for token in llama_service.stream_response(
+                facts=results["facts"],
+                query=query,
+                level_used=results["level"],
+                confidence=results["confidence"],
+                user_profile=user_profile.to_dict()
+            ):
+                yield token
+
+        return StreamingResponse(generate(), media_type="text/plain")
+        
+    except Exception as e:
+        print(f"Error in stream: {e}")
+        return StreamingResponse(iter([f"Error: {str(e)}"]), media_type="text/plain")
+
 async def store_fact(fact_input: FactInput):
     try:
         user_profile = get_user_profile(fact_input.user_id)
