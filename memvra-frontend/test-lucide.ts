@@ -1,0 +1,12 @@
+import * as Lucide from 'lucide-react';
+console.log('PenTool:', !!Lucide.PenTool);
+console.log('Save:', !!Lucide.Save);
+console.log('Loader2:', !!Lucide.Loader2);
+console.log('CheckCircle2:', !!Lucide.CheckCircle2);
+console.log('AlertCircle:', !!Lucide.AlertCircle);
+console.log('Database:', !!Lucide.Database);
+console.log('Lock:', !!Lucide.Lock);
+console.log('Zap:', !!Lucide.Zap);
+console.log('Globe:', !!Lucide.Globe);
+console.log('Search:', !!Lucide.Search);
+console.log('Shield:', !!Lucide.Shield);

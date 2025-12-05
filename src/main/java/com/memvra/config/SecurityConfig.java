@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .requestMatchers("/v1/auth/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .requestMatchers("/v1/brain/**").permitAll() // Brain integration
                 .requestMatchers(HttpMethod.GET, "/v1/facts/**").permitAll() // Public read access
                 .requestMatchers("/v1/dashboard/**").authenticated() // JWT required
                 .anyRequest().authenticated() // Everything else requires auth (API Key or JWT)
@@ -122,6 +123,7 @@ public class SecurityConfig {
             "/v3/api-docs/**", 
             "/actuator/health", 
             "/v1/auth/**",
+            "/v1/brain/**", // Brain integration - no API key needed
             "/v1/dashboard/**" // Dashboard uses JWT, not API Key
         );
         private int rateLimitPerMinute = 60;

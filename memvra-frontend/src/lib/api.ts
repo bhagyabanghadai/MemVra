@@ -85,3 +85,76 @@ export const createApiKey = async (name: string) => {
 export const revokeApiKey = async (id: string) => {
     await api.delete(`/dashboard/keys/${id}`);
 };
+
+// ============================================
+// Brain API Functions
+// ============================================
+
+export interface BrainRecallResponse {
+    query: string;
+    result: string;
+    matches?: Array<{
+        fact_id: string;
+        content: string;
+        created_at: string;
+        relevance: string;
+    }>;
+    suggestion?: string;
+    metadata?: {
+        facts_retrieved: number;
+        level_used: number;
+        confidence: number;
+        compression_ratio: number;
+        user_query_count: number;
+        user_fact_count: number;
+    };
+}
+
+export interface BrainInsight {
+    summary: string;
+    patterns: string[];
+    sentiment: string;
+    consolidated_memories?: number;
+    key_insights?: string[];
+}
+
+export interface BrainStatusResponse {
+    status: string;
+    logicalBrain: string;
+    intuitiveBrain: string;
+}
+
+/**
+ * Query the logical brain for fact recall
+ * @param query - Search query string
+ */
+export const recallFromBrain = async (query: string): Promise<BrainRecallResponse> => {
+    const response = await api.post<BrainRecallResponse>('/logical/recall', null, {
+        params: { query }
+    });
+    return response.data;
+};
+
+/**
+ * Trigger the intuitive brain's dream cycle for pattern detection
+ * @param facts - Array of facts to consolidate
+ */
+export const triggerDreamCycle = async (facts: Array<{ content: string; fact_id: string; created_at: string }>): Promise<BrainInsight> => {
+    const response = await api.post<BrainInsight>('/intuitive/dream', {
+        user_id: "default", // TODO: Get actual user ID
+        facts: facts.map(f => f.content)
+    });
+    return response.data;
+};
+
+/**
+ * Get the current brain integration status
+ */
+export const getBrainStatus = async (): Promise<BrainStatusResponse> => {
+    const response = await api.get<any>('/stats');
+    return {
+        status: response.data.status || "operational",
+        logicalBrain: response.data.llama_available ? "online" : "offline",
+        intuitiveBrain: "online"
+    };
+};

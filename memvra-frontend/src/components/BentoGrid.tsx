@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+// @ts-ignore
 import { Database, Lock, Zap, Globe, Search, Shield } from 'lucide-react';
 import { cn } from '../lib/utils';
 

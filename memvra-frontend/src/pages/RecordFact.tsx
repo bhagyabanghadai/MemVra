@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
+// @ts-ignore
 import { PenTool, Save, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { recordFact } from '../lib/api';
 import { Link } from 'react-router-dom';

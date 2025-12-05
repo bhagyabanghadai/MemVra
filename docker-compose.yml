@@ -9,14 +9,33 @@ services:
       POSTGRES_USER: memvra
       POSTGRES_PASSWORD: password
     ports:
-      - "5432:5432"
+      - "5433:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U memvra -d memvra"]
+      test: [ "CMD-SHELL", "pg_isready -U memvra -d memvra" ]
       interval: 5s
       timeout: 5s
       retries: 20
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  brain:
+    build:
+      context: ./memvra-brain
+      dockerfile: Dockerfile
+    container_name: memvra-brain
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/')" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
 
   app:
     build:
@@ -29,15 +48,21 @@ services:
       DATABASE_NAME: memvra
       DATABASE_USER: memvra
       DATABASE_PASSWORD: password
-      MEMVRA_SECRET_KEY: local-dev-change-me
-      MEMVRA_API_KEY_ENABLED: "true"
+      MEMVRA_FACT_SECRET_KEY: local-dev-change-me
+      MEMVRA_FACT_MAX_CONTENT_LENGTH: "50000"
+      MEMVRA_JWT_SECRET: dev-jwt-secret-change-in-production-9a4f2c8d3b7e1f5g6h0j4k8l2m5n9p3q7r1s5t9u3v7w1x5y9z3a7b1c5d9e3f7g
+      MEMVRA_JWT_EXPIRATION_MS: "86400000"
+      MEMVRA_SECURITY_API_KEY_ENABLED: "true"
       MEMVRA_SECURITY_API_KEY_VALUE: "local-dev-api-key"
       MEMVRA_SECURITY_API_KEY_RATE_LIMIT_PER_MINUTE: "10000"
+      MEMVRA_BRAIN_URL: "http://memvra-brain:8000"
       SERVER_PORT: "8080"
     ports:
       - "8080:8080"
     depends_on:
       postgres:
+        condition: service_healthy
+      brain:
         condition: service_healthy
     restart: unless-stopped
 

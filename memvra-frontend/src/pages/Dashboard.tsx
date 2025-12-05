@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getApiKeys, createApiKey, revokeApiKey } from '../lib/api';
+import { getApiKeys, createApiKey, revokeApiKey, getBrainStatus, triggerDreamCycle, searchFacts } from '../lib/api';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
-import { Key, Plus, Trash2, Copy, Check } from 'lucide-react';
+import { Key, Plus, Trash2, Copy, Check, Brain, Zap, Database, TrendingUp, Sparkles, FileText, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
     const { logout } = useAuth();
@@ -11,6 +12,19 @@ export default function Dashboard() {
     const [newKeyName, setNewKeyName] = useState('');
     const [createdKey, setCreatedKey] = useState<string | null>(null);
     const [copied, setCopied] = useState(false);
+
+    // Fetch brain statistics
+    const { data: brainStats } = useQuery({
+        queryKey: ['brainStats'],
+        queryFn: getBrainStatus,
+        refetchInterval: 30000 // Refresh every 30s
+    });
+
+    // Fetch recent facts for dashboard overview
+    const { data: recentFacts } = useQuery({
+        queryKey: ['recentFacts'],
+        queryFn: () => searchFacts({ page: 0, size: 5 })
+    });
 
     const { data: keys, isLoading } = useQuery({
         queryKey: ['apiKeys'],
@@ -33,6 +47,17 @@ export default function Dashboard() {
         }
     });
 
+    const dreamMutation = useMutation({
+        mutationFn: async () => {
+            if (!recentFacts?.content) return null;
+            return triggerDreamCycle(recentFacts.content.map(f => ({
+                content: f.content,
+                fact_id: f.fact_id,
+                created_at: f.created_at
+            })));
+        }
+    });
+
     const handleCopy = () => {
         if (createdKey) {
             navigator.clipboard.writeText(createdKey);
@@ -43,25 +68,122 @@ export default function Dashboard() {
 
     return (
         <div className="min-h-screen bg-background pt-24 px-6 pb-12">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-7xl mx-auto">
                 <div className="flex items-end justify-between mb-12">
                     <div>
-                        <h1 className="text-4xl font-serif mb-2">Developer Dashboard</h1>
-                        <p className="text-white/60">Manage your API keys and integration settings.</p>
+                        <h1 className="text-4xl font-serif mb-2">Dashboard</h1>
+                        <p className="text-white/60">Your memory system command center.</p>
                     </div>
-                    <button
-                        onClick={logout}
-                        className="text-sm text-white/40 hover:text-white transition-colors"
-                    >
-                        Sign Out
-                    </button>
+                    <div className="flex items-center gap-4">
+                        <Link
+                            to="/profile"
+                            className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2"
+                        >
+                            <User className="w-4 h-4" />
+                            Profile
+                        </Link>
+                        <button
+                            onClick={logout}
+                            className="text-sm text-white/40 hover:text-white transition-colors"
+                        >
+                            Sign Out
+                        </button>
+                    </div>
                 </div>
+
+                {/* Quick Actions */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <Link
+                        to="/record"
+                        className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-3xl p-6 hover:scale-105 transition-transform"
+                    >
+                        <FileText className="w-8 h-8 text-cyan-400 mb-4" />
+                        <h3 className="text-lg font-medium mb-2">Record Fact</h3>
+                        <p className="text-sm text-white/60">Capture new memories</p>
+                    </Link>
+
+                    <button
+                        onClick={() => dreamMutation.mutate()}
+                        disabled={dreamMutation.isPending || !recentFacts?.content?.length}
+                        className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-3xl p-6 hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed text-left"
+                    >
+                        <Sparkles className="w-8 h-8 text-purple-400 mb-4" />
+                        <h3 className="text-lg font-medium mb-2">
+                            {dreamMutation.isPending ? 'Analyzing...' : 'Dream Cycle'}
+                        </h3>
+                        <p className="text-sm text-white/60">Discover patterns</p>
+                    </button>
+
+                    <Link
+                        to="/explore"
+                        className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-3xl p-6 hover:scale-105 transition-transform"
+                    >
+                        <Database className="w-8 h-8 text-green-400 mb-4" />
+                        <h3 className="text-lg font-medium mb-2">Explore</h3>
+                        <p className="text-sm text-white/60">Browse all memories</p>
+                    </Link>
+                </div>
+
+                {/* Brain Statistics */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white/5 border border-white/10 rounded-3xl p-8 mb-8"
+                >
+                    <h2 className="text-xl font-medium mb-6 flex items-center gap-2">
+                        <Brain className="w-5 h-5 text-cyan-400" />
+                        Brain Status
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-white/5 rounded-2xl p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <span className="text-sm text-white/60">Logical Brain</span>
+                                <div className={`w-2 h-2 rounded-full ${brainStats?.logicalBrain === 'online' ? 'bg-green-400' : 'bg-red-400'}`} />
+                            </div>
+                            <p className="text-2xl font-bold">{brainStats?.logicalBrain || 'offline'}</p>
+                        </div>
+
+                        <div className="bg-white/5 rounded-2xl p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <span className="text-sm text-white/60">Intuitive Brain</span>
+                                <div className={`w-2 h-2 rounded-full ${brainStats?.intuitiveBrain === 'online' ? 'bg-green-400' : 'bg-red-400'}`} />
+                            </div>
+                            <p className="text-2xl font-bold">{brainStats?.intuitiveBrain || 'offline'}</p>
+                        </div>
+
+                        <div className="bg-white/5 rounded-2xl p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <span className="text-sm text-white/60">Total Memories</span>
+                                <TrendingUp className="w-4 h-4 text-white/40" />
+                            </div>
+                            <p className="text-2xl font-bold">{recentFacts?.totalElements || 0}</p>
+                        </div>
+                    </div>
+
+                    {dreamMutation.isSuccess && dreamMutation.data && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            className="mt-6 bg-purple-500/10 border border-purple-500/20 rounded-xl p-6"
+                        >
+                            <h3 className="text-lg font-medium text-purple-400 mb-4">Analysis Complete</h3>
+                            <div className="space-y-3 text-sm text-white/80">
+                                <p><strong>Patterns Discovered:</strong> {dreamMutation.data.patterns.length}</p>
+                                {dreamMutation.data.patterns.map((pattern, i) => (
+                                    <p key={i} className="pl-4 border-l-2 border-purple-500/50">• {pattern}</p>
+                                ))}
+                                <p className="mt-4 text-white/60"><strong>Sentiment:</strong> {dreamMutation.data.sentiment}</p>
+                            </div>
+                        </motion.div>
+                    )}
+                </motion.div>
 
                 {/* Create Key Section */}
                 <div className="bg-white/5 border border-white/10 rounded-3xl p-8 mb-8">
                     <h2 className="text-xl font-medium mb-6 flex items-center gap-2">
                         <Plus className="w-5 h-5" />
-                        Generate New Key
+                        Generate New API Key
                     </h2>
 
                     <div className="flex gap-4">

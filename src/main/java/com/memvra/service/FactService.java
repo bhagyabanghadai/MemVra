@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import jakarta.persistence.criteria.Predicate;
@@ -30,12 +31,14 @@ public class FactService {
 
     private final FactRepository repository;
     private final CryptoService crypto;
+    private final BrainService brainService;
     private final int maxContentLength;
 
-    public FactService(FactRepository repository, CryptoService crypto,
+    public FactService(FactRepository repository, CryptoService crypto, BrainService brainService,
                        @Value("${memvra.fact.max-content-length}") int maxContentLength) {
         this.repository = repository;
         this.crypto = crypto;
+        this.brainService = brainService;
         this.maxContentLength = maxContentLength;
     }
 
@@ -71,6 +74,19 @@ public class FactService {
 
         try {
             record = repository.save(record);
+            
+            // Push to Brain asynchronously (fire and forget for now, or sync)
+            try {
+                Map<String, Object> factMap = new java.util.HashMap<>();
+                factMap.put("content", record.getContent());
+                factMap.put("fact_id", record.getFactId().toString());
+                factMap.put("created_at", record.getCreatedAt().toString());
+                brainService.triggerDreamCycle(List.of(factMap));
+            } catch (Exception e) {
+                log.error("Failed to push fact to brain: {}", e.getMessage());
+                // Don't fail the transaction just because brain push failed
+            }
+
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
             throw new ConflictException("Duplicate fact detected");
         }

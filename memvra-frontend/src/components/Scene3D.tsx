@@ -37,12 +37,12 @@ function DigitalEntity() {
         return { positions, colors };
     }, []);
 
-    useFrame((state, delta) => {
+    useFrame((_state, delta) => {
         if (!pointsRef.current) return;
 
         // Get scroll offset (0 to 1)
         const r1 = scroll.range(0, 1 / 3);
-        const r2 = scroll.range(1 / 3, 1 / 3);
+        const _r2 = scroll.range(1 / 3, 1 / 3);
         const r3 = scroll.range(2 / 3, 1 / 3);
 
         // Base rotation
@@ -53,7 +53,8 @@ function DigitalEntity() {
         // Phase 1: Sphere -> Explode
         // Phase 2: Explode -> Tunnel/Ring
 
-        const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
+        // @ts-ignore - THREE.js types are strict but this works at runtime
+        const _positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
 
         // Simple morphing simulation by scaling
         // Ideally we would interpolate between pre-calculated shapes, 

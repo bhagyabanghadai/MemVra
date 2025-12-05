@@ -39,6 +39,7 @@ memvra:
         - /v3/api-docs/**
         - /actuator/health
         - /v1/auth/**
+        - /v1/brain/**
         - /v1/dashboard/**
       rate-limit-per-minute: ${MEMVRA_API_KEY_RATE_LIMIT:60}
   cors:
@@ -48,7 +49,9 @@ memvra:
     expiration-ms: ${MEMVRA_JWT_EXPIRATION_MS:86400000}
   fact:
     max-content-length: 50000
-    secret-key: ${MEMVRA_SECRET_KEY:local-dev-change-me}
+    secret-key: ${MEMVRA_FACT_SECRET_KEY:local-dev-change-me}
+  brain:
+    url: ${MEMVRA_BRAIN_URL:http://localhost:8000}
 
 management:
   endpoints:
@@ -57,4 +60,4 @@ management:
         include: health
   endpoint:
     health:
-       show-details: when_authorized
+      show-details: when_authorized

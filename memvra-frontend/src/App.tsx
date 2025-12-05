@@ -10,7 +10,10 @@ import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Dashboard from './pages/Dashboard';
+import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ChatWithBrain from './pages/ChatWithBrain';
+import FloatingChatWidget from './components/FloatingChatWidget';
 
 const queryClient = new QueryClient();
 
@@ -30,12 +33,17 @@ function App() {
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/chat" element={<ChatWithBrain />} />
 
                 <Route element={<ProtectedRoute />}>
                   <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/profile" element={<ProfilePage />} />
                 </Route>
               </Routes>
             </main>
+
+            {/* Floating Chat Widget - Available on all pages */}
+            <FloatingChatWidget />
           </div>
         </AuthProvider>
       </Router>
